@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hlumelo Kambi | Senior Full Stack Developer</title>
+    <meta name="description" content="Professional portfolio of Hlumelo Kambi, Full Stack Developer specializing in JavaScript, React, Node.js, and AI solutions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1478DB;
+            --primary-dark: #0d5ca8;
+            --secondary: #00c5c7;
+            --accent: #ffc600;
+            --accent-dark: #ff9d00;
+            --text: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --bg-dark: #121212;
+            --bg-darker: #0a0a0a;
+            --bg-light: #1e1e1e;
+            --card-bg: #252525;
+            --success: #3AD900;
+            --error: #ff2c70;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 500px;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--primary-dark) 100%);
+            z-index: -1;
+            transform: skewY(-4deg);
+            transform-origin: top left;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        header p.tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Navigation */
+        nav {
+            margin: 2rem 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(20, 120, 219, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text);
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .project-grid, .skills-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(20, 120, 219, 0.3);
+        }
+
+        .button.secondary {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .button.secondary:hover {
+            background-color: rgba(20, 120, 219, 0.1);
+        }
+
+        .button.accent {
+            background-color: var(--accent);
+            color: #000;
+        }
+
+        .button.accent:hover {
+            background-color: var(--accent-dark);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 2px solid var(--bg-dark);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .timeline-item .date {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 500;
+            background-color: rgba(255, 198, 0, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+        }
+
+        /* Skills */
+        .skills-category {
+            margin-bottom: 2rem;
+        }
+
+        .skills-category h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 197, 199, 0.1);
+            color: var(--secondary);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(20, 120, 219, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            font-size: 1.25rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text);
+        }
+
+        .contact-info p, .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            background-color: var(--bg-darker);
+            color: var(--text-secondary);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Chatbot */
+        #chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(20, 120, 219, 0.3);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        #chat-button:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        #chat-modal {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            max-width: calc(100% - 60px);
+            height: 500px;
+            max-height: calc(100vh - 180px);
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            z-index: 1001;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #chat-modal.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #chat-modal-header {
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        #chat-display {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .chat-message.user {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-message.model {
+            background-color: var(--card-bg);
+            color: var(--text);
+            margin-right: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom-left-radius: 4px;
+        }
+
+        #chat-input-container {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            background-color: var(--bg-light);
+            color: var(--text);
+            margin-right: 0.5rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        #chat-input:focus {
+            border-color: var(--primary);
+        }
+
+        #chat-send-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        #chat-send-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .loading-indicator {
+            display: none;
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .loading-indicator.active {
+            display: block;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p.tagline {
+                font-size: 1.25rem;
+            }
+            
+            section h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .project-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #chat-modal {
+                right: 20px;
+                bottom: 80px;
+            }
+            
+            #chat-button {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p.tagline {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Hlumelo Kambi</h1>
+                <p class="tagline">Full Stack Developer & AI Enthusiast</p>
+                <div class="social-links">
+                    <a href="https://github.com/hlumelokambi" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/hlumelokambi" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com/hlumelokambi" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="mailto:hlumelo.kambi@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="grid">
+                    <div class="card">
+                        <p>
+                            I'm a passionate Full Stack Developer with 6+ years of experience building robust, scalable web applications. My expertise spans JavaScript, React, Node.js, and Python, with a special interest in AI and machine learning integration.
+                        </p>
+                        <p>
+                            I thrive on solving complex problems and creating elegant solutions that deliver exceptional user experiences. My approach combines technical excellence with creative problem-solving to build applications that make a real impact.
+                        </p>
+                        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                            <a href="Hlumelo_Kambi_Resume.pdf" download class="button">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                            <button id="summarize-portfolio-button" class="button accent">
+                                <i class="fas fa-sparkles"></i> Portfolio Summary
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-laptop-code" style="margin-right: 0.5rem;"></i> Frontend</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript (ES6+)</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">SASS</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-server" style="margin-right: 0.5rem;"></i> Backend</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Ruby on Rails</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">GraphQL</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-database" style="margin-right: 0.5rem;"></i> Databases</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">SQL Server</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Elasticsearch</span>
+                            <span class="skill-tag">ORM/ODM</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-cloud" style="margin-right: 0.5rem;"></i> DevOps & Cloud</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">Google Cloud</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">Nginx</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-robot" style="margin-right: 0.5rem;"></i> AI/ML</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">Keras</span>
+                            <span class="skill-tag">Scikit-learn</span>
+                            <span class="skill-tag">NLP</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">OpenAI API</span>
+                            <span class="skill-tag">LangChain</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-tools" style="margin-right: 0.5rem;"></i> Tools & Methods</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">JIRA</span>
+                            <span class="skill-tag">Agile</span>
+                            <span class="skill-tag">Scrum</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">Jest</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="date">2022 - Present</span>
+                        <h3>Senior Software Engineer | Tech Solutions Inc.</h3>
+                        <p>
+                            Lead the development of a new microservices architecture using Node.js and React. Implemented CI/CD pipelines that reduced deployment time by 50%. Mentored junior developers and contributed to key architectural decisions that improved system scalability.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Microservices</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="date">2019 - 2022</span>
+                        <h3>Full Stack Developer | Innovate Corp.</h3>
+                        <p>
+                            Developed and maintained web applications using Python/Django and Vue.js. Integrated third-party APIs and optimized database queries, improving application performance by 30%. Collaborated with cross-functional teams to deliver features aligned with business goals.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="date">2017 - 2019</span>
+                        <h3>Junior Developer | WebCrafters</h3>
+                        <p>
+                            Assisted in the development of client websites using HTML, CSS, and JavaScript. Contributed to responsive design implementations and learned version control best practices. Worked closely with designers to bring mockups to life.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Responsive Design</span>
+                            <span class="skill-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Featured Projects</h2>
+                <div class="project-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-robot" style="margin-right: 0.5rem;"></i> AI-Powered Chatbot</h3>
+                        <p>
+                            A conversational AI chatbot built with Python and TensorFlow, capable of understanding natural language and providing intelligent responses. Features include sentiment analysis and dynamic response generation.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">NLP</span>
+                            <span class="skill-tag">Flask</span>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="button secondary">
+                                <i class="fas fa-external-link-alt"></i> View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-shopping-cart" style="margin-right: 0.5rem;"></i> E-commerce Platform</h3>
+                        <p>
+                            A full-stack e-commerce application developed with React, Node.js, and MongoDB. Includes user authentication, product management, shopping cart, and payment gateway integration.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Stripe API</span>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="button secondary">
+                                <i class="fas fa-external-link-alt"></i> View Project
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-users" style="margin-right: 0.5rem;"></i> Real-time Collaboration Tool</h3>
+                        <p>
+                            A web-based tool enabling real-time document collaboration, built using WebSockets, Express.js, and React. Supports multiple users editing simultaneously with live updates.
+                        </p>
+                        <div style="margin-top: 1rem;">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">WebSockets</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">Firebase</span>
+                        </div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="button secondary">
+                                <i class="fas fa-external-link-alt"></i> View Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <a href="mailto:hlumelo.kambi@example.com">hlumelo.kambi@example.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>LinkedIn</h3>
+                            <a href="https://linkedin.com/in/hlumelokambi" target="_blank">linkedin.com/in/hlumelokambi</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>GitHub</h3>
+                            <a href="https://github.com/hlumelokambi" target="_blank">github.com/hlumelokambi</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>Portfolio</h3>
+                            <a href="https://hlumelokambi.dev" target="_blank">hlumelokambi.dev</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Hlumelo Kambi. All rights reserved.</p>
+            <p>Built with <i class="fas fa-heart" style="color: var(--error);"></i> and modern web technologies</p>
+        </footer>
+    </div>
+
+    <!-- Chatbot Button -->
+    <button id="chat-button" aria-label="Open chat">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <!-- Chatbot Modal -->
+    <div id="chat-modal">
+        <div id="chat-modal-header">
+            <span>Ask Hlumelo <i class="fas fa-sparkles"></i></span>
+            <button id="chat-modal-close" aria-label="Close chat">&times;</button>
+        </div>
+        <div id="chat-display">
+            <div class="chat-message model">
+                Hello! I'm Hlumelo's AI assistant. How can I help you learn more about Hlumelo's skills, experience, or projects?
+            </div>
+        </div>
+        <div class="loading-indicator" id="chat-loading-indicator">
+            <i class="fas fa-spinner fa-spin"></i> Typing...
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Ask me anything..." aria-label="Chat input">
+            <button id="chat-send-button" aria-label="Send message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Summary Modal -->
+    <div class="modal-overlay" id="summary-modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="summary-modal-close" aria-label="Close modal">&times;</button>
+            <h3><i class="fas fa-sparkles"></i> Portfolio Summary</h3>
+            <p id="summary-text">Loading summary...</p>
+            <div class="loading-indicator" id="summary-loading-indicator">
+                <i class="fas fa-spinner fa-spin"></i> Generating summary...
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Initialize PDF.js worker
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+
+        // --- Chatbot UI Logic ---
+        class Chatbot {
+            constructor() {
+                this.chatHistory = [];
+                // Initial message from the model
+                this.chatHistory.push({ 
+                    role: "model", 
+                    parts: [{ 
+                        text: "Hello! I'm Hlumelo's AI assistant. How can I help you learn more about Hlumelo's skills, experience, or projects?" 
+                    }] 
+                });
+            }
+
+            async sendMessage(prompt) {
+                this.chatHistory.push({ 
+                    role: "user", 
+                    parts: [{ text: prompt }] 
+                });
+                const payload = { contents: this.chatHistory };
+                const apiKey = ""; // Leave as empty string, Canvas will provide it
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        this.chatHistory.push({ 
+                            role: "model", 
+                            parts: [{ text: text }] 
+                        });
+                        return text;
+                    } else {
+                        console.error("Unexpected API response structure:", result);
+                        return this.getAlternativeResponse(prompt);
+                    }
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    return "I'm sorry, I'm having trouble connecting right now. Please try again later.";
+                }
+            }
+
+            // Provides alternative responses if API call fails or for specific categories
+            getAlternativeResponse(prompt) {
+                const lowerPrompt = prompt.toLowerCase();
+                let category = 'general';
+
+                if (lowerPrompt.includes('skill') || lowerPrompt.includes('technology')) {
+                    category = 'skills';
+                } else if (lowerPrompt.includes('experience') || lowerPrompt.includes('work')) {
+                    category = 'experience';
+                } else if (lowerPrompt.includes('project') || lowerPrompt.includes('portfolio')) {
+                    category = 'projects';
+                } else if (lowerPrompt.includes('contact') || lowerPrompt.includes('reach')) {
+                    category = 'contact';
+                } else if (lowerPrompt.includes('about') || lowerPrompt.includes('background')) {
+                    category = 'about';
+                }
+
+                const alternativeResponses = {
+                    'skills': "Hlumelo has extensive skills in both frontend and backend development, including React, Node.js, Python, and various databases. He's also experienced with AI/ML technologies like TensorFlow and NLP. What specific technical skills are you interested in learning more about?",
+                    'experience': "Hlumelo has over 6 years of professional experience, currently as a Senior Software Engineer at Tech Solutions Inc. Previously, he worked at Innovate Corp and WebCrafters. Would you like details about a specific role or company?",
+                    'projects': "Hlumelo has worked on several interesting projects including an AI-powered chatbot, an e-commerce platform, and a real-time collaboration tool. Which project would you like to hear more about?",
+                    'contact': "You can reach Hlumelo via email at hlumelo.kambi@example.com, or connect with him on LinkedIn and GitHub. Would you like me to provide specific links?",
+                    'about': "Hlumelo is a passionate Full Stack Developer with expertise in JavaScript, React, Node.js, and Python. He specializes in building robust, scalable web applications with a focus on AI integration and excellent user experiences."
+                };
+                
+                return alternativeResponses[category] || "I'd be happy to tell you more about Hlumelo's professional background. Could you ask a more specific question about his skills, experience, or projects?";
+            }
+        }
+
+        // Initialize chatbot
+        const chatbot = new Chatbot();
+        const chatButton = document.getElementById('chat-button');
+        const chatModal = document.getElementById('chat-modal');
+        const chatModalClose = document.getElementById('chat-modal-close');
+        const chatDisplay = document.getElementById('chat-display');
+        const chatInput = document.getElementById('chat-input');
+        const chatSendButton = document.getElementById('chat-send-button');
+        const chatLoadingIndicator = document.getElementById('chat-loading-indicator');
+
+        // Toggle chat modal
+        chatButton.addEventListener('click', () => {
+            chatModal.classList.toggle('active');
+            if (chatModal.classList.contains('active')) {
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+                chatInput.focus();
+            }
+        });
+
+        chatModalClose.addEventListener('click', () => {
+            chatModal.classList.remove('active');
+        });
+
+        // Send message function
+        const sendMessageToChatbot = async () => {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                // Display user message
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('chat-message', 'user');
+                userMessageDiv.textContent = userMessage;
+                chatDisplay.appendChild(userMessageDiv);
+                chatInput.value = '';
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+
+                // Show loading indicator
+                chatLoadingIndicator.classList.add('active');
+
+                // Get response from chatbot
+                const modelResponse = await chatbot.sendMessage(userMessage);
+
+                // Hide loading indicator
+                chatLoadingIndicator.classList.remove('active');
+
+                // Display model response
+                const modelMessageDiv = document.createElement('div');
+                modelMessageDiv.classList.add('chat-message', 'model');
+                modelMessageDiv.textContent = modelResponse;
+                chatDisplay.appendChild(modelMessageDiv);
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            }
+        };
+
+        // Event listeners for sending messages
+        chatSendButton.addEventListener('click', sendMessageToChatbot);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessageToChatbot();
+            }
+        });
+
+        // --- Summarize Portfolio Logic ---
+        const summarizeButton = document.getElementById('summarize-portfolio-button');
+        const summaryModalOverlay = document.getElementById('summary-modal-overlay');
+        const summaryModalClose = document.getElementById('summary-modal-close');
+        const summaryText = document.getElementById('summary-text');
+        const summaryLoadingIndicator = document.getElementById('summary-loading-indicator');
+
+        summarizeButton.addEventListener('click', async () => {
+            summaryModalOverlay.classList.add('active');
+            summaryText.textContent = '';
+            summaryLoadingIndicator.classList.add('active');
+
+            // Extract relevant content from the page
+            const aboutContent = document.querySelector('#about .card p').textContent;
+            const skillsContent = Array.from(document.querySelectorAll('#skills .skill-tag')).map(el => el.textContent).join(', ');
+            const experienceContent = Array.from(document.querySelectorAll('#experience .timeline-item h3')).map(el => el.textContent).join('; ');
+            const projectsContent = Array.from(document.querySelectorAll('#projects .card h3')).map(el => el.textContent.replace(/\s+/g, ' ')).join('; ');
+
+            const portfolioContent = `About: ${aboutContent}\nSkills: ${skillsContent}\nExperience: ${experienceContent}\nProjects: ${projectsContent}`;
+
+            const prompt = `Create a professional, concise summary of the following developer portfolio. Highlight the key skills, experience, and projects in a way that showcases the developer's expertise and value proposition. Write in third person. Portfolio content:\n\n${portfolioContent}`;
+
+            const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+            const apiKey = ""; // Leave as empty string, Canvas will provide it
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    summaryText.textContent = result.candidates[0].content.parts[0].text;
+                } else {
+                    console.error("Unexpected API response structure for summary:", result);
+                    summaryText.textContent = "Hlumelo Kambi is a Senior Full Stack Developer with expertise in JavaScript, React, Node.js, and Python. With over 6 years of experience, he has worked on diverse projects including AI-powered applications, e-commerce platforms, and real-time collaboration tools. His technical skills span frontend and backend development, cloud technologies, and AI/ML integration.";
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API for summary:", error);
+                summaryText.textContent = "Hlumelo Kambi is a skilled Full Stack Developer specializing in modern web technologies and AI solutions. His professional experience includes senior engineering roles where he's led development teams and implemented scalable architectures. He's passionate about building innovative applications that solve real-world problems.";
+            } finally {
+                summaryLoadingIndicator.classList.remove('active');
+            }
+        });
+
+        // Close summary modal
+        summaryModalClose.addEventListener('click', () => {
+            summaryModalOverlay.classList.remove('active');
+        });
+
+        // Close modal if clicked outside content
+        summaryModalOverlay.addEventListener('click', (e) => {
+            if (e.target === summaryModalOverlay) {
+                summaryModalOverlay.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to sections when they come into view
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize section animations
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Add scroll event listener
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
